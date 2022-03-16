@@ -18,11 +18,11 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: const Text("Teste Calendário"),
+          title: const Text("Calendário"),
           centerTitle: true,
           backgroundColor: Colors.blueGrey,
         ),
-        body: const calendarScreen(),
+        body: calendarScreen(),
         backgroundColor: Colors.white,
       ),
     );

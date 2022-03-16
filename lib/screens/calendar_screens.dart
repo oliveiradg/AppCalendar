@@ -11,7 +11,7 @@ import 'package:teste_calendario/utils/faker_api.dart';
 var now = DateTime.now();
 var firstDay = DateTime(now.year, now.month - 3, now.day);
 var lastDay = DateTime(now.year, now.month + 3, now.day);
-// CalendarFormat format = CalendarFormat.twoWeeks;
+CalendarFormat format = CalendarFormat.month;
 
 bool load = false;
 List<AppEvent> events = [];
@@ -95,7 +95,7 @@ class _calendarScreenState extends State<calendarScreen> {
           focusedDay: now,
           firstDay: firstDay,
           lastDay: lastDay,
-          //calendarFormat: format,
+          calendarFormat: format,
           startingDayOfWeek: StartingDayOfWeek.monday,
           availableCalendarFormats: const {
             CalendarFormat.month: 'mês',
@@ -117,7 +117,9 @@ class _calendarScreenState extends State<calendarScreen> {
             ),
             formatButtonTextStyle:
                 const TextStyle(color: Colors.white, fontSize: 12),
-            titleTextStyle: const TextStyle(color: Colors.blueGrey),
+            titleTextStyle: const TextStyle(
+              color: (Color.fromARGB(1, 59, 60, 90)),
+            ),
             titleCentered: true,
           ),
 
@@ -143,34 +145,76 @@ class _calendarScreenState extends State<calendarScreen> {
             ),
           ),
 
-          calendarBuilders: CalendarBuilders(dowBuilder: (context, day) {
-            String text;
-            if (day.weekday == DateTime.sunday) {
-              text = 'Dom';
-            } else if (day.weekday == DateTime.monday) {
-              text = 'Seg';
-            } else if (day.weekday == DateTime.tuesday) {
-              text = 'Ter';
-            } else if (day.weekday == DateTime.wednesday) {
-              text = 'Qua';
-            } else if (day.weekday == DateTime.thursday) {
-              text = 'Qui';
-            } else if (day.weekday == DateTime.friday) {
-              text = 'Sex';
-            } else if (day.weekday == DateTime.saturday) {
-              text = 'Sáb';
-            } else {
-              text = 'error';
-            }
-            return Center(
-              child: Text(
-                text,
-                style: const TextStyle(
-                  color: Colors.blueGrey,
+          calendarBuilders: CalendarBuilders(
+            dowBuilder: (context, day) {
+              String text;
+              if (day.weekday == DateTime.sunday) {
+                text = 'Dom';
+              } else if (day.weekday == DateTime.monday) {
+                text = 'Seg';
+              } else if (day.weekday == DateTime.tuesday) {
+                text = 'Ter';
+              } else if (day.weekday == DateTime.wednesday) {
+                text = 'Qua';
+              } else if (day.weekday == DateTime.thursday) {
+                text = 'Qui';
+              } else if (day.weekday == DateTime.friday) {
+                text = 'Sex';
+              } else if (day.weekday == DateTime.saturday) {
+                text = 'Sáb';
+              } else {
+                text = 'error';
+              }
+              return Center(
+                child: Text(
+                  text,
+                  style: const TextStyle(
+                    color: Colors.blueGrey,
+                  ),
                 ),
-              ),
-            );
-          }),
+              );
+            },
+
+            //IMPLEMENTAÇÃO ANIVERSÁRIO E QUANTIDADES DE EVETENTOS NO DIA
+
+            /*  markerBuilder: (context, day, events) {
+            if (events.isNotEmpty) {
+              return Stack(
+                alignment: Alignment.center,
+                children: [
+                  Positioned(
+                      bottom: 2.0,
+                      child: Container(
+                        height: 10,
+                        width: 10,
+                        decoration: const BoxDecoration(
+                            color: Colors.green,
+                            shape: BoxShape.rectangle,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(15))),
+                      ))
+                ],
+              );
+            } else {
+              return Stack(
+                alignment: Alignment.center,
+                children: [
+                  Positioned(
+                      bottom: 2.0,
+                      child: Container(
+                        height: 10,
+                        width: 10,
+                        decoration: const BoxDecoration(
+                            color: Colors.brown,
+                            shape: BoxShape.rectangle,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(15))),
+                      ))
+                ],
+              );
+            
+          }}*/
+          ),
         ),
         const SizedBox(
           height: 16,
